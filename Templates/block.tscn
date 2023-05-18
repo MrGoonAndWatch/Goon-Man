@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://imdv18iemnjp"]
+
+[ext_resource type="Texture2D" uid="uid://couftsj1ob5sg" path="res://Tilesets/tiles_packed.png" id="1_prmei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3maob"]
+size = Vector2(18, 18)
+
+[node name="Block" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3maob")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_prmei")
+region_enabled = true
+region_rect = Rect2(126, 36, 18, 18)

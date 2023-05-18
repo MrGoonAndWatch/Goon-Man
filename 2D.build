@@ -1,0 +1,21 @@
+{
+	"disabled_build_options": {
+		"disable_3d": true,
+		"disable_3d_physics": true,
+		"openxr": false
+	},
+	"disabled_classes": [
+		"AudioBusLayout",
+		"AudioEffect",
+		"AudioStream",
+		"BaseMaterial3D",
+		"Curve3D",
+		"Node3D",
+		"Occluder3D",
+		"Shape3D",
+		"SkeletonIK3D",
+		"Texture3D",
+		"World3D"
+	],
+	"type": "build_profile"
+}

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://cp87uynyg2q6o"]
+
+[ext_resource type="Texture2D" uid="uid://bgcjvcn41yfpt" path="res://Tilesets/characters_packed.png" id="1_l6ce5"]
+[ext_resource type="Script" path="res://Scripts/walker.gd" id="1_ygwhx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oueng"]
+atlas = ExtResource("1_l6ce5")
+region = Rect2(144, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6blyp"]
+atlas = ExtResource("1_l6ce5")
+region = Rect2(168, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhop5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oueng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6blyp")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k83r5"]
+size = Vector2(12, 10)
+
+[node name="Walker" type="CharacterBody2D" groups=["damagable"]]
+collision_layer = 2
+script = ExtResource("1_ygwhx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_nhop5")
+animation = &"Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("RectangleShape2D_k83r5")
+
+[node name="LedgeCheckLeft" type="RayCast2D" parent="."]
+position = Vector2(-7, 0)
+target_position = Vector2(0, 2)
+
+[node name="LedgeCheckRight" type="RayCast2D" parent="."]
+position = Vector2(5, 0)
+target_position = Vector2(0, 2)

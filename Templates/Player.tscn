@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsndka6k6w1s4"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3ga5t"]
+[ext_resource type="Texture2D" uid="uid://bgcjvcn41yfpt" path="res://Tilesets/characters_packed.png" id="1_imyn8"]
+[ext_resource type="PackedScene" uid="uid://d3i2g3ofjnh05" path="res://Templates/bullet.tscn" id="2_j8jvw"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="3_rhv3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fchuf"]
+size = Vector2(14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grb5s"]
+atlas = ExtResource("1_imyn8")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_akgl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grb5s")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_3ga5t")
+bullet_scene = ExtResource("2_j8jvw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_fchuf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_akgl0")
+animation = &"Idle"
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+script = ExtResource("3_rhv3o")
