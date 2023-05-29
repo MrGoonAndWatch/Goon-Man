@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b37k337ioe41n"]
+
+[ext_resource type="Script" path="res://Scripts/damage_player_on_touch.gd" id="1_617pb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3avj"]
+
+[node name="test-damage-player" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_617pb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u3avj")
+debug_color = Color(0, 0.631373, 0.458824, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="on_collision"]
+[connection signal="area_exited" from="." to="." method="on_collision_end"]

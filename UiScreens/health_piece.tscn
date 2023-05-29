@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjcym65n8go8j"]
+
+[ext_resource type="Script" path="res://Scripts/health_piece.gd" id="1_3vqqo"]
+[ext_resource type="Texture2D" uid="uid://couftsj1ob5sg" path="res://Tilesets/tiles_packed.png" id="2_j4k0g"]
+
+[node name="health_piece" type="Node2D"]
+script = ExtResource("1_3vqqo")
+active = NodePath("active")
+inactive = NodePath("inactive")
+
+[node name="active" type="Sprite2D" parent="."]
+texture = ExtResource("2_j4k0g")
+region_enabled = true
+region_rect = Rect2(74, 39, 14, 12)
+
+[node name="inactive" type="Sprite2D" parent="."]
+texture = ExtResource("2_j4k0g")
+region_enabled = true
+region_rect = Rect2(110, 39, 14, 12)

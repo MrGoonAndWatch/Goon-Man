@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp87uynyg2q6o"]
+[gd_scene load_steps=9 format=3 uid="uid://ce7y3k4tr2pka"]
 
 [ext_resource type="Texture2D" uid="uid://bgcjvcn41yfpt" path="res://Tilesets/characters_packed.png" id="1_l6ce5"]
 [ext_resource type="Script" path="res://Scripts/walker.gd" id="1_ygwhx"]
+[ext_resource type="Script" path="res://Scripts/damage_player_on_touch.gd" id="3_rs6lf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oueng"]
 atlas = ExtResource("1_l6ce5")
@@ -28,6 +29,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k83r5"]
 size = Vector2(12, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjnd7"]
+size = Vector2(12, 10)
+
 [node name="Walker" type="CharacterBody2D" groups=["damagable"]]
 collision_layer = 2
 script = ExtResource("1_ygwhx")
@@ -48,3 +52,15 @@ target_position = Vector2(0, 2)
 [node name="LedgeCheckRight" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
 target_position = Vector2(0, 2)
+
+[node name="Player Damage Area" type="Area2D" parent="."]
+collision_mask = 7
+script = ExtResource("3_rs6lf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Damage Area"]
+position = Vector2(-1, -5)
+shape = SubResource("RectangleShape2D_bjnd7")
+debug_color = Color(0.913725, 0.243137, 0.419608, 0.419608)
+
+[connection signal="body_entered" from="Player Damage Area" to="Player Damage Area" method="on_collision"]
+[connection signal="body_exited" from="Player Damage Area" to="Player Damage Area" method="on_collision_end"]

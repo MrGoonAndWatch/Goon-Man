@@ -1,12 +1,16 @@
 extends Area2D
 
-const SPEED = 10
+const SPEED = 2.5
 
 var direction = 0
 var initialized = false
+var paused = false
 
 func _process(delta):
-	if not initialized:
+	if Input.is_action_just_pressed("pause"):
+		paused = !paused
+	
+	if not initialized or paused:
 		return
 	
 	position.x += direction * SPEED
@@ -22,4 +26,4 @@ func initialize(startPos: Vector2, move_dir: int):
 func on_collision(collider):
 	if collider.is_in_group("damagable"):
 		collider.damage()
-		kill()
+	kill()

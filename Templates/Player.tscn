@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsndka6k6w1s4"]
+[gd_scene load_steps=12 format=3 uid="uid://bsndka6k6w1s4"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3ga5t"]
 [ext_resource type="Texture2D" uid="uid://bgcjvcn41yfpt" path="res://Tilesets/characters_packed.png" id="1_imyn8"]
 [ext_resource type="PackedScene" uid="uid://d3i2g3ofjnh05" path="res://Templates/bullet.tscn" id="2_j8jvw"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="3_rhv3o"]
+[ext_resource type="PackedScene" uid="uid://bl4e2f34tpqqq" path="res://UiScreens/pause_menu.tscn" id="5_d4wa0"]
+[ext_resource type="PackedScene" uid="uid://ck70wel8mjbim" path="res://UiScreens/game_over_screen.tscn" id="6_irsbd"]
+[ext_resource type="PackedScene" uid="uid://k85f17foir45" path="res://UiScreens/game_win_screen.tscn" id="7_1ow2i"]
+[ext_resource type="PackedScene" uid="uid://b4y8gqgecvbfd" path="res://UiScreens/health_bar.tscn" id="7_163s4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fchuf"]
 size = Vector2(14, 20)
@@ -24,7 +28,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_3ga5t")
 bullet_scene = ExtResource("2_j8jvw")
 
@@ -40,3 +44,20 @@ flip_h = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 script = ExtResource("3_rhv3o")
+
+[node name="pause_menu" parent="Camera2D" instance=ExtResource("5_d4wa0")]
+visible = false
+
+[node name="game_over_screen" parent="Camera2D" instance=ExtResource("6_irsbd")]
+visible = false
+player = NodePath("../..")
+
+[node name="game_win_screen" parent="Camera2D" instance=ExtResource("7_1ow2i")]
+visible = false
+player = NodePath("../..")
+
+[node name="health_bar" parent="Camera2D" instance=ExtResource("7_163s4")]
+position = Vector2(-265, -167)
+scale = Vector2(3.5, 3.5)
+
+[connection signal="health_changed" from="." to="Camera2D/health_bar" method="_on_health_changed"]

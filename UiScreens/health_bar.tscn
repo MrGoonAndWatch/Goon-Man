@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4y8gqgecvbfd"]
+
+[ext_resource type="PackedScene" uid="uid://cjcym65n8go8j" path="res://UiScreens/health_piece.tscn" id="1_1a8h5"]
+[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="1_du3vv"]
+
+[node name="health_bar" type="Node2D"]
+script = ExtResource("1_du3vv")
+heart1 = NodePath("health_piece")
+heart2 = NodePath("health_piece2")
+heart3 = NodePath("health_piece3")
+
+[node name="health_piece" parent="." instance=ExtResource("1_1a8h5")]
+
+[node name="health_piece2" parent="." instance=ExtResource("1_1a8h5")]
+position = Vector2(17, 0)
+
+[node name="health_piece3" parent="." instance=ExtResource("1_1a8h5")]
+position = Vector2(34, 0)

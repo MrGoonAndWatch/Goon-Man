@@ -7,7 +7,7 @@
 size = Vector2(17, 9)
 
 [node name="Spike" type="Area2D"]
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_i08ol")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
